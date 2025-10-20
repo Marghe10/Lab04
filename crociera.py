@@ -1,6 +1,7 @@
 import csv
 from passeggeri import Passeggeri
 from cabine import CabineStandard,CabinaAnimali,CabinaDeluxe
+import operator
 
 class Crociera:
     def __init__(self, nome):
@@ -21,7 +22,7 @@ class Crociera:
                     self.passeggeri.append(passeggero)
                 elif len(riga)==4:
                     codice,letti,ponte,prezzo=riga
-                    cabinaS=CabineStandard(codice,letti,ponte,prezzo)
+                    cabinaS=CabineStandard(codice,letti,ponte,int(prezzo))
                     self.cabine.append(cabinaS)
                 elif len(riga)==5:
                     if riga[4].isdigit():
@@ -81,9 +82,18 @@ class Crociera:
 
     def cabine_ordinate_per_prezzo(self):
         """Restituisce la lista ordinata delle cabine in base al prezzo"""
-        # TODO
 
+        lista_cabine_ordinate = sorted(self.cabine, key=operator.attrgetter('prezzo'))
+        return lista_cabine_ordinate
     def elenca_passeggeri(self):
         """Stampa l'elenco dei passeggeri mostrando, per ognuno, la cabina a cui è associato, quando applicabile """
-        # TODO
+        if not self.passeggeri:
+            print("Nessun passeggero caricato.")
+            return
+        for p in self.passeggeri:
+            if p.assegnato:
+                print(f"{p.codice} - {p.nome} {p.cognome} → Cabina: {p.assegnato}")
+            else:
+                print(f"{p.codice} - {p.nome} {p.cognome} → Nessuna cabina assegnata")
+
 

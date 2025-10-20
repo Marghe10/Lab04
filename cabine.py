@@ -6,6 +6,8 @@ class CabineStandard:
         self.prezzo=prezzo
         self.disponibile=True
 
+    def __str__(self):
+        return f"{self.codice} - Prezzo: {self.prezzo}€ - Tipo: {self.__class__.__name__}"
 
 class CabinaDeluxe(CabineStandard):
     def __init__(self, codice, letti, ponte, prezzo, stile):
