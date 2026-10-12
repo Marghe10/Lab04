@@ -65,8 +65,8 @@ Per questo laboratorio è necessario utilizzare la classe `LingottoFiere` presen
 1. Modifica nome del centro fieristico
 2. Carica dati da file
 3. Assegna stand a espositore
-4. Visualizza stand ordinati per prezzo
-5. Visualizza elenco espositori
+4. Visualizza elenco espositori
+5. Visualizza stand ordinati per prezzo
 6. Esci
 Scegli un'opzione >>
 ```
@@ -96,14 +96,25 @@ Se tutte le condizioni sono soddisfatte, lo stand viene contrassegnato come non 
 l'associazione tra espositore e stand. Se una delle verifiche non va a buon fine, il metodo deve sollevare un'eccezione 
 per segnalare l'errore.
 
-Per facilitare la consultazione e la scelta degli stand, la classe `LingottoFiere` deve inoltre mettere a
+La classe `LingottoFiere` deve avere un metodo `elenca_espositori()` che stampa l'elenco degli
+espositori specificando, quando applicabile, lo stand a cui ciascun espositore è associato.
+
+> **💡 SUGGERIMENTO:**
+> Per confrontare due oggetti tramite l'operatore `==`, è possibile definire nella classe il metodo speciale 
+> `__eq__(self, other)`, che permette di stabilire quando due istanze devono essere considerate uguali, ad esempio in 
+> base a un codice identificativo.
+
+Infine, per facilitare la consultazione e la scelta degli stand, la classe `LingottoFiere` deve inoltre mettere a
 disposizione un metodo che permetta di visualizzare l'elenco degli stand ordinati in base al prezzo. Il
 metodo `stand_ordinati_per_prezzo()` restituirà la lista degli stand partendo da quelli più economici fino a
 quelli più costosi, fornendo così uno strumento utile sia per la gestione interna che per l'esperienza
 dell'utente.
 
-Infine, la classe `LingottoFiere` deve avere un metodo `elenca_espositori()` che stampa l'elenco degli
-espositori specificando, quando applicabile, lo stand a cui ciascun espositore è associato.
+> **💡 SUGGERIMENTO:**
+> Per ordinare una lista di oggetti tramite `sorted(lista)` o `lista.sort()`, definendo un algoritmo specifico 
+> (ad esempio, più sofisticato del semplice ordinamento crescente o decrescente secondo uno dei suoi attributi, 
+> quindi dell’impiego di `key=attrgetter("<attributo>")`), è possibile definire nella classe il metodo speciale 
+> `__lt__(self, other)`, che permette di stabilire quando un oggetto è minore (`<`) di un altro.
 
 > **💡 NOTA:**
 > Per rendere le informazioni leggibili e chiare, tutte le classi coinvolte devono implementare un metodo
@@ -114,5 +125,3 @@ espositori specificando, quando applicabile, lo stand a cui ciascun espositore �
 > ```stand stampato
 > ST2: Prese Extra | 12 mq - Padiglione 2 - Prezzo 266.20€ - Prese aggiuntive: 3 - Disponibile
 > ```
-> Infine, implementare i metodi dunder `__eq__()` e/o `__lt__()` all'interno di una classe quando è necessario
-> definire la logica di uguaglianza (==) e/o di confronto ordinato (<) tra istanze della classe.

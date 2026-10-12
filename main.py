@@ -5,8 +5,8 @@ def menu():
     print("1. Modifica nome del centro fieristico")
     print("2. Carica dati da file")
     print("3. Assegna stand a espositore")
-    print("4. Visualizza stand ordinati per prezzo")
-    print("5. Visualizza elenco espositori")
+    print("4. Visualizza elenco espositori")
+    print("5. Visualizza stand ordinati per prezzo")
     print("6. Esci")
 
     return input("Scegli un'opzione >> ")
@@ -39,14 +39,14 @@ def main():
                 print(f"Errore: {e}")
 
         elif scelta == "4":
+            print("\n--- Elenco espositori ---")
+            lingotto.elenca_espositori()
+
+        elif scelta == "5":
             stand_ordinati = lingotto.stand_ordinati_per_prezzo()
             print("\n--- Stand ordinati per prezzo ---")
             for s in stand_ordinati:
                 print(s)
-
-        elif scelta == "5":
-            print("\n--- Elenco espositori ---")
-            lingotto.elenca_espositori()
 
         elif scelta == "6":
             print("Uscita dal programma.")
