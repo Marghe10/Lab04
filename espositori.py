@@ -3,3 +3,6 @@ class Espositori(object):
         self.codice = codice
         self.cognome = cognome
         self.nome = nome
+
+    def __str__(self):
+        return str(self.codice) + str(self.cognome) + str(self.nome)

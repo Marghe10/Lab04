@@ -1,4 +1,6 @@
 import csv
+
+from standAssociato import StandAssociato
 from standStandard import StandStandard
 from standPremium import StandPremium
 from standPrese import StandPrese
@@ -12,6 +14,7 @@ class LingottoFiere:
         self.prese=[]
         self.premium=[]
         self.espositori=[]
+        self.stand_associati=[]
 
     """Aggiungere setter e getter se necessari"""
     # TODO
@@ -50,12 +53,51 @@ class LingottoFiere:
 
     def assegna_stand_a_espositore(self, codice_stand, codice_espositore):
         """Associa uno stand a un espositore"""
-        # TODO
+        tutti_gli_stand=self.standard + self.prese + self.premium #è una lista che contiene tutti gli stand
+        codice_stand_da_assegnare=codice_stand
+        codice_espositore_da_assegnare=codice_espositore
+
+        """controllo se lo stand esiste"""
+        stand_trovato=False
+        for stand in tutti_gli_stand:
+            if codice_stand_da_assegnare == stand.codice:
+                stand_trovato=True
+                print("stand trovato")
+                break
+        if not stand_trovato:
+            raise Exception("Lo stand richiesto non esiste")
+
+
+        """controllo se lo stand è gia assegnato a qualcuno"""
+        for s in self.stand_associati:
+            if codice_stand_da_assegnare == s.codice_stand:
+                raise Exception("Lo stand richiesto è già stato assegnato")
+
+        """controlla se l'espositore esiste"""
+        espositore_trovato=False
+        for espositore in self.espositori:
+            if codice_espositore_da_assegnare == espositore.codice:
+                espositore_trovato=True
+                break
+        if not espositore_trovato:
+            raise Exception("L'espositore inserito non esiste")
+
+        """dopo aver verificato tutto creo una nuova associazione"""
+        nuovo_stand_associato=StandAssociato(codice_stand_da_assegnare,codice_espositore_da_assegnare)
+        self.stand_associati.append(nuovo_stand_associato)
 
 
     def elenca_espositori(self):
         """Stampa l'elenco degli espositori mostrando, per ognuno, lo stand a cui è associato, quando applicabile """
         # TODO
+        elenco_espositori=[]
+        for a in self.espositori:
+            codici_stand_associati=[]
+            for x in self.stand_associati:
+                    codici_stand_associati.append(x.codice_stand)
+
+        NON CI RIESCO
+
 
     def stand_ordinati_per_prezzo(self):
         """Restituisce la lista ordinata degli stand in base al prezzo"""
