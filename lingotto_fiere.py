@@ -91,12 +91,11 @@ class LingottoFiere:
 
     def elenca_espositori(self):
         """Stampa l'elenco degli espositori mostrando, per ognuno, lo stand a cui è associato, quando applicabile """
-        # TODO
         elenco_espositori_finale=[]
         for e in self.espositori:
             for esp in self.stand_associati:
-                if e.codice == esp.codice:
-                    espositore_stand= f"{e} codice stand: {esp.codice_stand} "
+                if e.codice == esp.codice_espositore:
+                    espositore_stand= f"{e}, codice stand: {esp.codice_stand} "
                     elenco_espositori_finale.append(espositore_stand)
                 else:
                     espositore_senza_stand= f"{e}"
