@@ -100,6 +100,8 @@ class LingottoFiere:
                 else:
                     espositore_senza_stand= f"{e}"
                     elenco_espositori_finale.append(espositore_senza_stand)
+            if not self.stand_associati:
+                elenco_espositori_finale.append(f"{e}")
 
         for espositore in elenco_espositori_finale:
             print(espositore)
