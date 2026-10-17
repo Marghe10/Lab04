@@ -16,6 +16,9 @@ class LingottoFiere:
         self.espositori=[]
         self.stand_associati=[]
 
+    def set_nome(self, nuovo_nome):
+        """Setta il nuovo nome dell'esposizione"""
+        self.nome = nuovo_nome
     """Aggiungere setter e getter se necessari"""
     # TODO
 
@@ -67,7 +70,6 @@ class LingottoFiere:
         if not stand_trovato:
             raise Exception("Lo stand richiesto non esiste")
 
-
         """controllo se lo stand è gia assegnato a qualcuno"""
         for s in self.stand_associati:
             if codice_stand_da_assegnare == s.codice_stand:
@@ -90,13 +92,18 @@ class LingottoFiere:
     def elenca_espositori(self):
         """Stampa l'elenco degli espositori mostrando, per ognuno, lo stand a cui è associato, quando applicabile """
         # TODO
-        elenco_espositori=[]
-        for a in self.espositori:
-            codici_stand_associati=[]
-            for x in self.stand_associati:
-                    codici_stand_associati.append(x.codice_stand)
+        elenco_espositori_finale=[]
+        for e in self.espositori:
+            for esp in self.stand_associati:
+                if e.codice == esp.codice:
+                    espositore_stand= f"{e} codice stand: {esp.codice_stand} "
+                    elenco_espositori_finale.append(espositore_stand)
+                else:
+                    espositore_senza_stand= f"{e}"
+                    elenco_espositori_finale.append(espositore_senza_stand)
 
-        NON CI RIESCO
+        for espositore in elenco_espositori_finale:
+            print(espositore)
 
 
     def stand_ordinati_per_prezzo(self):
@@ -104,6 +111,6 @@ class LingottoFiere:
         tutti_gli_stand=self.standard + self.prese + self.premium
         stand_ordinati_per_prezzo=sorted(tutti_gli_stand, key=lambda s:float(s.prezzo))
         return stand_ordinati_per_prezzo
-                    # lo posso fare perchè tutte e tre le liste che ho unito insieme hanno il parametro
-                    # prezzo, quindi la lista che ho creato con tutti gli stand al suo interno avrà un
-                    # parametro prezzi con i pressi di tutti gli stand
+            # lo posso fare perchè tutte e tre le liste che ho unito insieme hanno il parametro
+            # prezzo, quindi la lista che ho creato con tutti gli stand al suo interno avrà un
+            # parametro prezzi con i pressi di tutti gli stand

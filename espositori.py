@@ -5,4 +5,4 @@ class Espositori(object):
         self.nome = nome
 
     def __str__(self):
-        return str(self.codice) + str(self.cognome) + str(self.nome)
+        return f"codice: {str(self.codice)}, cognome: {str(self.cognome)}, nome: {str(self.nome)}"
